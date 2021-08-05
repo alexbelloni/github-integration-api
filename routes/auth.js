@@ -31,15 +31,16 @@ module.exports = (app) => {
         })
             .then(response => response.text())
             .then(response => {
-                console.log(response);
                 try {
+                    console.log('succeeded',response);
                     res.json({ access_token: response.split("&")[0].split("=")[1], succeeded: true });
                 } catch (e) {
+                    console.error('failed',err);
                     res.json({});
                 }
             })
             .catch(err => {
-                console.error(err);
+                console.error('failed',err);
                 res.json({});
             });
     });
